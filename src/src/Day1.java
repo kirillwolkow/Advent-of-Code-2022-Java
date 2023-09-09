@@ -1,20 +1,26 @@
-public class Day1 {
-    public static void main(String[] args) {
-        String calories = """
-                1000
-                2000
-                3000
-                4000
-                5000
-                6000
-                7000
-                8000
-                9000
-                10000
-                """;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
-        for (String s: calories.split("\n")) {
-            System.out.println(s);
+public class Day1 {
+    public static void main(String[] args) throws FileNotFoundException {
+        File file = new File("C:\\Users\\kenny\\programming\\java_aoc\\inputs\\day1.txt");
+        Scanner scanner = new Scanner(file);
+        int maxNumber = 0;
+        int currentMax = 0;
+
+        while (scanner.hasNextLine()) {
+            String number = scanner.nextLine();
+            if (!number.isEmpty()) {
+                int currentNumber = Integer.parseInt(number);
+                currentMax += currentNumber;
+            } else {
+                if (currentMax > maxNumber) {
+                    maxNumber = currentMax;
+                }
+                currentMax = 0;
+            }
         }
+        System.out.println("MAX NUMBER: " + maxNumber);
     }
 }
